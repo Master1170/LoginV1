@@ -1,0 +1,86 @@
+#This code need to be on one archive to save users
+import os
+import getpass as gt
+
+rst='\033[0m'
+class c:
+    black = '\033[30m'
+    green = '\033[32m'
+    orange = '\033[33m'
+    purple = '\033[35m'
+    cyan = '\033[36m'
+    white = '\033[37m'
+    grey = '\033[90m'
+    red = '\033[91m'
+    yellow = '\033[93m'
+    blue = '\033[94m'
+class bg:
+    black = '\033[40m'
+    red = '\033[41m'
+    green = '\033[42m'
+    yellow = '\033[43m'
+    blue = '\033[44m'
+    purple = '\033[45m'
+    cyan = '\033[46m'
+    white = '\033[47m'
+class addon:
+    strikethrough = '\033[09m'
+    underline = '\033[04m'
+    disable = '\033[02m'
+    italics = '\033[03m'
+    bold = '\033[01m'
+    clear = '\033[2J'
+
+menu = c.cyan+"""Login
+Sign up\n"""+rst
+
+os.system("cls")
+
+def main():
+
+    def L():
+        Ln = input(c.yellow+'Username: '+rst)
+        Lp1 = gt.getpass(c.yellow+'Password: '+rst)
+        Lp2 = gt.getpass(c.yellow+'Repeat password: '+rst)
+    
+        if Lp1 == Lp2:
+            if os.path.isfile(Ln): #Check if username exist
+                print(c.red+"Username already exists"+rst)
+                L()
+            else:
+                file = open(Ln, 'w')   #Make a new file txt with the input and 'w' active write mode 
+                file.write(Lp2)  #Write password on file
+                file.close()    #Close file
+                print(c.green+"Saved"+rst)
+                main()
+        else:
+            print(c.red+'Password not match'+rst)
+            L()
+
+    def SU():
+        SUn = input(c.yellow+"User name: "+rst) #input username
+        if os.path.isfile(SUn): #if Sun exist
+            P=open(SUn, 'r')    #open file
+            data = P.read() #read file
+            P.close()   #close file
+            SUp = gt.getpass(c.yellow+"Password: "+rst) #input password
+            if data == SUp: #comparison
+                print(c.green+'Wellcome'+rst)
+            else:
+                print(c.red+'Incorrect password'+rst)
+                SU()
+        else:
+            print(c.red+"Not found"+rst)
+            SU()
+
+    print(c.green+"---TryV0.2---"+rst)
+    r1 = input((menu))
+    if r1=='Login':
+        L()
+    elif r1=='Sign up':
+        SU()
+    else:
+        print(c.red+'Error'+rst)
+        main()
+
+main()
