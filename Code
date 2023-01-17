@@ -38,7 +38,7 @@ os.system("cls")
 
 def main():
 
-    def L():
+    def SU():
         Ln = input(c.yellow+'Username: '+rst)
         Lp1 = gt.getpass(c.yellow+'Password: '+rst)
         Lp2 = gt.getpass(c.yellow+'Repeat password: '+rst)
@@ -46,7 +46,7 @@ def main():
         if Lp1 == Lp2:
             if os.path.isfile(Ln): #Check if username exist
                 print(c.red+"Username already exists"+rst)
-                L()
+                SU()
             else:
                 file = open(Ln, 'w')   #Make a new file txt with the input and 'w' active write mode 
                 file.write(Lp2)  #Write password on file
@@ -55,9 +55,9 @@ def main():
                 main()
         else:
             print(c.red+'Password not match'+rst)
-            L()
+            SU()
 
-    def SU():
+    def L():
         SUn = input(c.yellow+"User name: "+rst) #input username
         if os.path.isfile(SUn): #if Sun exist
             P=open(SUn, 'r')    #open file
@@ -68,10 +68,10 @@ def main():
                 print(c.green+'Wellcome'+rst)
             else:
                 print(c.red+'Incorrect password'+rst)
-                SU()
+                L()
         else:
             print(c.red+"Not found"+rst)
-            SU()
+            L()
 
     print(c.green+"---TryV0.2---"+rst)
     r1 = input((menu))
